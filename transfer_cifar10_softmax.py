@@ -21,10 +21,10 @@ import pandas as pd
 
 def load_pool3_data():
     # Update these file names after you serialize pool_3 values
-    X_test_file = 'X_test_20160212-00:06:14.npy'
-    y_test_file = 'y_test_20160212-00:06:14.npy'
-    X_train_file = 'X_train_20160212-00:06:14.npy'
-    y_train_file = 'y_train_20160212-00:06:14.npy'
+    X_test_file = 'X_test.npy'
+    y_test_file = 'y_test.npy'
+    X_train_file = 'X_train.npy'
+    y_train_file = 'y_train.npy'
     return np.load(X_train_file), np.load(y_train_file), np.load(X_test_file), np.load(y_test_file)
 
 def serialize_cifar_pool3(X,filename):
@@ -35,11 +35,10 @@ def serialize_cifar_pool3(X,filename):
 
 def serialize_data():
     X_train, y_train, X_test, y_test = load_CIFAR10(cifar10_dir)
-    datetime_str = datetime.datetime.today().strftime('%Y%m%d-%H:%M:%S')
-    serialize_cifar_pool3(X_train, 'X_train_'+datetime_str)
-    serialize_cifar_pool3(X_test, 'X_test_'+datetime_str)
-    np.save('y_train_'+datetime_str,y_train)
-    np.save('y_test_'+datetime_str,y_test)
+    serialize_cifar_pool3(X_train, 'X_train')
+    serialize_cifar_pool3(X_test, 'X_test')
+    np.save('y_train', y_train)
+    np.save('y_test', y_test)
 
 classes = np.array(['plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck'])
 cifar10_dir = 'resources/datasets/cifar-10-batches-py'
